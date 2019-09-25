@@ -86,3 +86,7 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+/.idea
+*.iml
+*.iml
+/vue-iview/*.iml
