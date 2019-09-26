@@ -1,5 +1,5 @@
 <template>
-
+<div>
     <Layout>
       <Header>
         <Menu mode="horizontal" theme="dark" active-name="1">
@@ -69,7 +69,7 @@
       </Layout>
       <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
     </Layout>
-
+</div>
 </template>
 
 
