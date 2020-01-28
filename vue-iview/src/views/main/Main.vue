@@ -1,46 +1,41 @@
 <template>
-  <Row></Row>
+  <div>
+    <Layout>
+      <Header>
+        头部
+      </Header>
+<Layout>
+  <Sider hide-trigger :style="{background: '#fff'}">
 
+  </Sider>
+  <Layout :style="{padding: '0 24px 24px'}">
+    <Breadcrumb :style="{margin: '24px 0'}">
+      <BreadcrumbItem>Home</BreadcrumbItem>
+      <BreadcrumbItem>Components</BreadcrumbItem>
+      <BreadcrumbItem>Layout</BreadcrumbItem>
+    </Breadcrumb>
+    <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+      Content
+    </Content>
+  </Layout>
+</Layout>
+<Footer>脚步</Footer>
+    </Layout>
+
+  </div>
 </template>
 
 <script>
-  // import Icon from 'icon'
-  // import Input from 'input'
-  // import FormItem from 'formItem'
   export default {
     name: "Main",
     data() {
-      return {
-        formInline: {
-          user: '',
-          password: ''
-        },
-        ruleInline: {
-          user: [
-            {required: true, message: '请填写用户名', trigger: 'blur'}
-          ],
-          password: [
-            {required: true, message: '请填写密码', trigger: 'blur'},
-            {type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur'}
-          ]
-        }
-      }
     },
-
-    methods: {
-      handleSubmit(name) {
-        this.$refs[name].validate((valid) => {
-          if (valid) {
-            this.$Message.success('提交成功!')
-          } else {
-            this.$Message.error('表单验证失败!')
-          }
-        })
-      }
+    methods: {},
+    mounted: function () {
+      alert("我进来了！");
     }
+
   }
+
 </script>
 
-<style scoped>
-
-</style>

@@ -1,4 +1,5 @@
 <template>
+  <div>
   <Row>
     <Col span="8">
       <Menu :theme="theme2">
@@ -115,10 +116,11 @@
     <Radio label="light"></Radio>
     <Radio label="dark"></Radio>
   </RadioGroup>
+  </div>
 </template>
 <script>
   export default {
-    name: "menu",
+    name: "DMenu",
     data() {
       return {
         theme2: 'light'
