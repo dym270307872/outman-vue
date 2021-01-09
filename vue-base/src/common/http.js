@@ -7,7 +7,7 @@ import util from '@/common/util.js';
 let show_console = true;
 // axios 配置
 axios.defaults.timeout = 30000;
-axios.defaults.baseURL = '/demo';
+axios.defaults.baseURL = '/';
 axios.defaults.withCredentials = true;
 
 
