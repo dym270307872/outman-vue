@@ -4,7 +4,7 @@ import util from '@/common/util.js';
 // import sync_request from 'sync-request';
 
 //系统默认配置
-let show_console = false;
+let show_console = true;
 // axios 配置
 axios.defaults.timeout = 30000;
 axios.defaults.baseURL = '/demo';
@@ -18,13 +18,14 @@ axios.interceptors.request.use(
     // console.log(util.tran2json(config));
 
     // config.data = qs.stringify(config.data)
-    //const token = localStorage.getItem('token');
-    //console.log("token : " + token);
-    // if (token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-    //     config.headers.Authorization = `${token}`;
-    // } else {
-    //     config.headers.Authorization = `demo`;
-    // }
+    // const token = localStorage.getItem('token');
+    const token = '129037efihsdfsd';
+    console.log("token : " + token);
+    if (token) { // 判断是否存在token，如果存在的话，则每个http header都加上token
+      config.headers.Authorization = `${token}`;
+    } else {
+      config.headers.Authorization = `demo`;
+    }
     // config.headers = {
     //     'Content-Type':'application/x-www-form-urlencoded'
     //   };
@@ -86,7 +87,9 @@ function axios_post(url, params) {
     axios.post(url, params)
       .then(response => {
         if (show_console) {
+          // console.log("sessionStatus:" + response.headers["sessionstatus"]);
           console.log("url = [" + url + "], response.data = " + util.tran2json(response.data));
+
         }
         resolve(response.data);
       }, err => {
@@ -151,27 +154,30 @@ export default {
   },
   send: function(url, config, data) {
 
-    if(config.contentType){
+    if (config.contentType) {
       // axios.config.headers['Content-Type'] = contentType;
-     return new Promise((resolve, reject) => { axios({
-        method:config.method,
-        url:url,
-        headers:{'Content-Type':config.contentType},
-        data:qs.stringify(data)
-      }).then(response => {
-          if (show_console || config.showLog) {
-            console.log("url = [" + url + "], response.data = " + util.tran2json(response.data));
-          }
-          resolve(response.data);
-        }, err => {
-          reject(err);
-        })
-        .catch((error) => {
-          reject(error)
-        });
-        });
-    }else{
-       return axios_get(url, data)
+      return new Promise((resolve, reject) => {
+        axios({
+            method: config.method,
+            url: url,
+            headers: {
+              'Content-Type': config.contentType
+            },
+            data: qs.stringify(data)
+          }).then(response => {
+            if (show_console || config.showLog) {
+              console.log("url = [" + url + "], response.data = " + util.tran2json(response.data));
+            }
+            resolve(response.data);
+          }, err => {
+            reject(err);
+          })
+          .catch((error) => {
+            reject(error)
+          });
+      });
+    } else {
+      return axios_get(url, data)
     }
 
 

@@ -8,12 +8,14 @@
     </br>
 
     <button @click="httpget">get请求</button>
-    <button @click="httppostraw">post请求raw</button>
-    <button @click="httppostraw2">post请求raw2</button>
     <button @click="httppost">post请求</button>
+
+    <button @click="httpCorsGet">get跨域请求</button>
+    <button @click="httpCorsPost">post跨域请求</button>
     </br>
 
     <textarea>{{result}}</textarea>
+     <textarea>{{sessionStatus}}</textarea>
   </div>
 </template>
 
@@ -26,21 +28,18 @@
           name: 'adfa',
           value: 12
         },
-        result: 'asdas'
+        result: 'asdas',
+        sessionStatus:''
       }
     },
     methods: {
       httpget() {
-        // alert('get开始');
-        // JSON.stringify(this.param);
-
         http.get('/testGet', this.param, this).then((res) => {
           this.result = res;
         });
         return;
       },
       httppost() {
-        // alert('post开始')
         http.send('/testPost', {
           method: 'post',
           contentType: 'application/x-www-form-urlencoded',
@@ -49,15 +48,13 @@
           this.result = res;
         });
       },
-      httppostraw() {
-        // alert('post开始')
-        http.post('/testPostRaw', this.param, this).then((res) => {
+      httpCorsGet() {
+        http.get('http://127.0.0.1:14040/demo/testGet', this.param, this).then((res) => {
           this.result = res;
         });
       },
-      httppostraw2() {
-        // alert('post开始')
-        http.post('/testPostRaw2', this.param, this).then((res) => {
+      httpCorsPost() {
+        http.post('http://127.0.0.1:14040/demo/testPost', this.param, this).then((res) => {
           this.result = res;
         });
       },
