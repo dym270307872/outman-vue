@@ -4,7 +4,7 @@ import util from '@/common/util.js';
 // import sync_request from 'sync-request';
 
 //系统默认配置
-let show_console = false;
+let show_console = true;
 // axios 配置
 axios.defaults.timeout = 30000;
 axios.defaults.baseURL = '/';
