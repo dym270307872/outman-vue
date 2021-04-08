@@ -1,12 +1,14 @@
 {
   "name": "vue-base",
   "version": "1.0.0",
-  "description": "使用基础vue技术开发的web项目",
+  "description": "使用基础vue技术开发的web项目,用于学习熟悉vue相关组件功能",
   "author": "dyaoming",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    // "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "cross-env ",
+
     "start": "npm run dev",
     "build": "node build/build.js"
   },
