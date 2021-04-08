@@ -13,8 +13,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "0.19.2",
     "crypto-js": "^4.0.0",
+    "axios": "0.21.1",
     "qs": "6.9.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6"
