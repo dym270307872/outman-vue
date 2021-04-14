@@ -1,26 +1,18 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
-import Index from '@/views/index/Index'
-import Main from '@/views/main/Main'
-import Grid from '@/views/demo/Grid'
-
-Vue.use(Router)
-
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Index',
-      component: Index
-    },{
-      path: '/',
-      name: 'Main',
-      component: Main
-    },{
-      path: '/demo/Grid',
-      name: 'Grid',
-      component: Grid
-    }
-  ]
+const routes= []
+ const router = new createRouter({
+  history:createWebHistory(),
+  routes
 })
+
+router.beforeEach((to, from, next) => {
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    // console.log(to.component.name);
+    document.title = to.meta.title
+  }
+  next()
+})
+export default router;
+
