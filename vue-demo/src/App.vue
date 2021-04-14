@@ -1,16 +1,18 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<div id="app">
+  <router-view/>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  name: 'App0000',
+  metaInfo: {
+      // if no subcomponents specify a metaInfo.title, this title will be used
+      title: 'Default Title',
+      // all titles will be injected into this template
+      titleTemplate: '%s | My Awesome Webapp'
+    }
 }
 </script>
 
