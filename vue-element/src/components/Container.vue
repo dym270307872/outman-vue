@@ -1,6 +1,6 @@
 <template>
-    <el-container>
-    <el-header>Header</el-header>
+    <el-container direction="vertical">
+    <el-header height="20%">Header</el-header>
     <el-container>
       <el-aside width="200px">Aside</el-aside>
       <el-main>Main</el-main>
@@ -9,8 +9,6 @@
 </template>
 <script>
 export default ({
-    data(){
-        
-    }
+    name:'container'
 })
 </script>
