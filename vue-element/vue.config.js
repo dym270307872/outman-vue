@@ -1,6 +1,39 @@
-let baseHost = '127.0.0.1';
-let basePort = process.env.NODE_ENV==='dev' ? 38080 : 38090;
-let proxyBaseUrl = 'http://127.0.0.1:29999';
+let baseHost = process.env.VUE_APP_BASEHOST;
+let basePort = process.env.VUE_APP_BASEPORT;
+let proxyBaseUrl = process.env.VUE_APP_PROXYBASEURL;
+
+//声明本地服务配置
+let devServiceConfig = {
+    // 环境配置
+    host: baseHost,
+    port: basePort,
+    //配置使用ssl
+    https: false,
+    //配置热部署-不刷新浏览器（1. hot: true单纯设置为true的时候，如果编译报错，会抛出错误，你重新改成正确的，这个时候又会触发重新编译，整个浏览器会重新刷新！2. hotOnly: true这个也设置的话，如果编译报错，你再改成正确的，重新编译，浏览器不会刷新！）
+    hot: true,
+    hotOnly: true,
+    //配置自动启动浏览器
+    // open: true
+};
+//配置代理
+if(proxyBaseUrl){
+    devServiceConfig['proxy'] = {
+        // 配置多个代理
+        '/api': {
+            //代理服务器地址
+            target: proxyBaseUrl,
+            // 是否启用websockets
+            ws: true, 
+            // 使用的是http协议则设置为false，https协议则设置为true
+            secure: false, 
+            //开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样客户端端和服务端进行数据的交互就不会有跨域问题
+            changOrigin: true,
+            pathRewrite: {
+                '^/api': '/api'
+            }
+        }
+    };
+}
 
 module.exports = {
     publicPath: '/', // 部署应用时的根路径(默认'/'),也可用相对路径(存在使用限制)
@@ -27,34 +60,7 @@ module.exports = {
         modules: false // 启用 CSS modules for all css / pre-processor files.
     },
     //反向代理
-    devServer: {
-        // 环境配置
-        host: baseHost,
-        port: basePort,
-        //配置使用ssl
-        https: false,
-        //配置热部署-不刷新浏览器（1. hot: true单纯设置为true的时候，如果编译报错，会抛出错误，你重新改成正确的，这个时候又会触发重新编译，整个浏览器会重新刷新！2. hotOnly: true这个也设置的话，如果编译报错，你再改成正确的，重新编译，浏览器不会刷新！）
-        hot: true,
-        hotOnly: true,
-        //配置自动启动浏览器
-        // open: true, 
-        proxy: {
-            // 配置多个代理
-            '/api': {
-                //代理服务器地址
-                target: proxyBaseUrl,
-                // 是否启用websockets
-                ws: true, 
-                // 使用的是http协议则设置为false，https协议则设置为true
-                secure: false, 
-                //开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样客户端端和服务端进行数据的交互就不会有跨域问题
-                changOrigin: true,
-                pathRewrite: {
-                    '^/api': '/api'
-                }
-            }
-        }
-    },
+    devServer: devServiceConfig,
     pluginOptions: {
         // 第三方插件配置
         // ...

@@ -6,9 +6,8 @@
   "private": true,
   "scripts": {
     "init": "npm install",
-    "dev": "cross-env NODE_ENV=dev vue-cli-service serve",
-    "uat": "cross-env NODE_ENV=uat vue-cli-service serve",
-    "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve --mode dev",
+    "uat": "vue-cli-service serve --mode uat",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },

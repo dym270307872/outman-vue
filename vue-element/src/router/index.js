@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import Index from '@/views/index/Index';
 import Container from '@/components/Container';
-
+import Http from '@/views/demo/Http';
 const routes = [{path: '/',redirect:'/index'},{
   path: '/index',
   name: 'Index',
@@ -15,6 +15,13 @@ const routes = [{path: '/',redirect:'/index'},{
   component: Container,
   meta: {
     title: '我的布局'
+  }
+}, {
+  path: '/http',
+  name: 'Http',
+  component: Http,
+  meta: {
+    title: 'Http'
   }
 }]
 const router = new createRouter({
