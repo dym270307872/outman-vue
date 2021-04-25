@@ -1,0 +1,13 @@
+{
+    "path": "/api/data",
+    "method":"get",
+    "data": {
+        "success": true,
+        "code": "0000",
+        "message": "登录成功！",
+        "data": {
+            "userName": "@ctitle(2,10)",
+            "img": "@image('600x600',#b7ef7c)"
+        }
+    }
+}
