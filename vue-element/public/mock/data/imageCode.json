@@ -1,0 +1,9 @@
+{
+    "path": "/api/imageCode",
+    "data": {
+        "success": true,
+        "code": "00000",
+        "message": "查询成功！",
+        "data": "@dataImage('50x20', 'abcde')"
+    }
+}

@@ -11,9 +11,9 @@ if (jsonList) {
     //是对象则注册mock
     if (!(json instanceof Array) && json instanceof Object) {
       if (json.method) {
-        mock(RegExp(json.path+'(?=\\?.*)'), json.method, mock(json.data));
+        mock(RegExp(json.path+'(?=\\\\?.*)'), json.method, mock(json.data));
       } else {
-        mock(RegExp(json.path+'(?=\\?.*)'), mock(json.data));
+        mock(RegExp(json.path+'(?=\\\\?.*)'), mock(json.data));
       }
     } else {
       console.warn('mock文件：' + fileName + '格式错误，请检查！');

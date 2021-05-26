@@ -2,7 +2,8 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import Index from '@/views/index/Index';
 import HelloWorld from '@/components/HelloWorld';
 import Http from '@/views/demo/Http';
-const routes = [{path: '/',redirect:'/index'},{
+import Image from '@/views/demo/image';
+const routes = [{ path: '/', redirect: '/index' }, {
   path: '/index',
   name: 'Index',
   component: Index,
@@ -22,6 +23,13 @@ const routes = [{path: '/',redirect:'/index'},{
   component: Http,
   meta: {
     title: 'Http'
+  }
+}, {
+  path: '/image',
+  name: 'Image',
+  component: Image,
+  meta: {
+    title: 'Image'
   }
 }]
 const router = new createRouter({

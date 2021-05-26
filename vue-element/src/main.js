@@ -1,13 +1,20 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import axios from "axios";
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
-import { ElMessage } from 'element-plus';
-process.env.VUE_APP_MOCK=='true' && require('../public/mock');
-const app = createApp(App);
+import { ElMessage, ElLoading } from 'element-plus';
 
-app.config.globalProperties.$axios = axios;
-app.config.globalProperties.$message = ElMessage;
-app.use(ElementPlus).use(router).mount("#app");
+//自定义js组件
+import RestFul from "@/assets/util/RestFulUtils";
+process.env.VUE_APP_MOCK=='true' && require('../public/mock');
+
+const app = createApp(App);
+//注册全局变量
+app.config.globalProperties.$rest = RestFul;
+app.provide("$message",ElMessage);
+app.provide("$loading",ElLoading);
+//全局使用组件
+app.use(ElementPlus);
+app.use(router);
+app.mount("#app");
