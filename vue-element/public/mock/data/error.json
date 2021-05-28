@@ -1,4 +1,4 @@
-{
+[{
     "path": "/api/error",
     "method":"get",
     "data": {
@@ -10,4 +10,16 @@
             "img": "@image('600x600',#b7ef7c)"
         }
     }
-}
+},{
+    "path": "/api/error2",
+    "method":"get",
+    "data": {
+        "success": false,
+        "code": "A9999",
+        "message": "查询信息异常！",
+        "data": {
+            "userName": "@ctitle(2,10)",
+            "img": "@image('600x600',#b7ef7c)"
+        }
+    }
+}]

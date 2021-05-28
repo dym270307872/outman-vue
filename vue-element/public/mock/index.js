@@ -1,35 +1,29 @@
 import { mock } from 'mockjs';
-import path from 'path';
 
-const jsonList = readJson('mock/data/mockList.json');
+//遍历文件夹下内容
+const mockFiles = require.context('./data', true, /\.json$/)
+mockFiles.keys().forEach(filePath => {
+  let fileValue = mockFiles(filePath);
 
-if (jsonList) {
-  jsonList.forEach(fileName => {
-    //解析json
-    let json = readJson(path.join('mock/data', fileName));
-
+  if (fileValue instanceof Array) {
+    //是array则遍历注册mock
+    fileValue.forEach(jsonObject => {
+      registerMock(jsonObject);
+    });
+  } else if (!(fileValue instanceof Array) && fileValue instanceof Object) {
     //是对象则注册mock
-    if (!(json instanceof Array) && json instanceof Object) {
-      if (json.method) {
-        mock(RegExp(json.path+'(?=\\\\?.*)'), json.method, mock(json.data));
-      } else {
-        mock(RegExp(json.path+'(?=\\\\?.*)'), mock(json.data));
-      }
-    } else {
-      console.warn('mock文件：' + fileName + '格式错误，请检查！');
-    }
-  });
+    registerMock(fileValue);
+  } else {
+    let fileName = filePath.replace(/^\.\/(.*)\.\w+$/, '$1');
+    console.warn('mock文件：' + fileName + '格式错误，请检查！');
+  }
+});
 
-}
 
-function readJson(uri) {
-  var xmlRequest = new XMLHttpRequest();
-  try {
-    xmlRequest.open("get", uri, false);
-    xmlRequest.send(null);
-    let data = JSON.parse(xmlRequest.responseText)
-    return data;
-  } catch (e) {
-    console.warn('mock文件：' + uri + '格式错误，请检查！', e);
+function registerMock(json) {
+  if (json.method) {
+    mock(RegExp(json.path + '(?=\\\\?.*)'), json.method, mock(json.data));
+  } else {
+    mock(RegExp(json.path + '(?=\\\\?.*)'), mock(json.data));
   }
 }
