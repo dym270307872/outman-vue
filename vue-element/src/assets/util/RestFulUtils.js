@@ -59,7 +59,7 @@ axios.interceptors.response.use(
                 case 404: {
                     // 返回 404 清除token信息并跳转到登录页面
                     //store.commit(types.LOGOUT);
-                    Vue.$message.error(error['response']['statusText']);
+                    Vue.prototype.$message.log(error['response']['statusText']);
                     break;
                 }
             }

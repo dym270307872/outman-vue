@@ -32,10 +32,10 @@ export default {
         }
   },
     mounted() {
-  //  this.$axios.get("/api/data?key=12").then(res => {
-        // console.log("这是登入信息:", res.data);
+   this.$rest.get("/api/data?key=12").then(res => {
+        console.log("这是登入信息:", res);
         this.$message.success('kasdhfkasdhjf');
-    // });1
+    });
     }
 }
 </script>

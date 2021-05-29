@@ -22,8 +22,10 @@ mockFiles.keys().forEach(filePath => {
 
 function registerMock(json) {
   if (json.method) {
-    mock(RegExp(json.path + '(?=\\\\?.*)'), json.method, mock(json.data));
+    // mock(RegExp(json.path + '(?=\\\\?.*)'), json.method, mock(json.data));
+    mock(RegExp(json.path + '($|(?=\\?.*))'), json.method, mock(json.data));
   } else {
-    mock(RegExp(json.path + '(?=\\\\?.*)'), mock(json.data));
+    // mock(RegExp(json.path + '(?=\\\\?.*)'), mock(json.data));
+    mock(RegExp(json.path + '($|(?=\\?.*))'), mock(json.data));
   }
 }
